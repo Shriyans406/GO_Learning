@@ -14,6 +14,9 @@ func main(){
 	var result int
 	var remainder int
 	result, remainder, err = intDivision(numerator, denominator)
+	if err != nil {
+		fmt.Printf(err.Error())
+	}
 	fmt.Println(result)
 	fmt.Println(remainder)
 	fmt.Printf("The result of %d divided by %d is %d with a remainder of %d\n", numerator, denominator, result, remainder)
