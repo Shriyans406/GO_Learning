@@ -24,4 +24,43 @@ func main() {
 
 	var intSlice3 []int32=make([]int32, 3, 8)
 	fmt.Printf("The length is %v with capacity %v\n", len(intSlice3), cap(intSlice3))
+
+	var myMap map[string]uint8 = make (map[string]uint8)
+	fmt.Println(myMap)
+
+	var myMap2 = map[string]uint8{"Adam":23, "Sarah":45}
+	fmt.Println(myMap2["Adam"])
+	fmt.Println(myMap2["Jason"])
+
+	var age, ok = myMap2["Adam"]
+	delete(myMap2, "Adam")
+
+	if ok{
+		fmt.Println("The age is %v", age)
+	}
+	else{
+		fmt.Println("Invalid Name")
+	}
+
+	for name, age := range myMap2{
+		fmt.Printf("Name: %v, Age: %v\n", name, age)
+	}
+
+	for i, v := range intArr{
+		fmt.Printf("Index: %v, Value: %v \n", i, v)
+	}
+
+	var i int=0
+	for i<10{
+		if i>10{
+			break
+		}
+		fmt.Println(i)
+		i=i+1
+	}
+
+	for i:=0; i<10; i++{
+		fmt.Println(i)
+	}
+	
 }
