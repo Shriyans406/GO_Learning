@@ -25,8 +25,12 @@ func(e electricEngine) milesleft() uint8{
 	return e.kwh*e.mpkwh
 }
 
-func canMakeIt(e gasEngine, miles uint8){
-	if miles<=e.milesLeft(){
+type engine interface{
+	milesleft() uint8
+}
+
+func canMakeIt(e engine, miles uint8){
+	if miles<=e.milesleft(){
 		fmt.Println("You can make it there!")
 	}
 	else{
