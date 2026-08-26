@@ -8,8 +8,30 @@ type gasEngine struct{
 	ownerInfo owner
 }
 
+type electricEngine struct{
+	mpkwh uint8
+	kwh uint8
+}
+
 type owner struct{
 	name string
+}
+
+func(e gasEngine) milesleft() uint8{
+	return e.gallons*e.mpg
+}
+
+func(e electricEngine) milesleft() uint8{
+	return e.kwh*e.mpkwh
+}
+
+func canMakeIt(e gasEngine, miles uint8){
+	if miles<=e.milesLeft(){
+		fmt.Println("You can make it there!")
+	}
+	else{
+		fmt.Println("Need to fuel up first!")
+	}
 }
 
 func main(){
@@ -17,4 +39,12 @@ func main(){
 	fmt.Println(myEngine.mpg)
 	fmt.Println(myEngine.gallons)
 	fmt.Println(myEngine.ownerInfo.name)
+
+	var myEngine2=struct{
+		mpg uint8
+		gallons uint8
+	}{25, 15}
+
+	fmt.Println(myEngine2.mpg)
+	fmt.Println(myEngine2.gallons)
 }
