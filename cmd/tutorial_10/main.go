@@ -32,36 +32,76 @@
 
 package main
 
+// import (
+// 	"encoding/json"
+// 	"fmt"
+// 	"io/ioutil"
+// )
+
+// type contactInfo struct{
+// 	Name string
+// 	Email string
+// }
+
+// type purchaseInfo struct{
+// 	Name string
+// 	Price float32
+// 	Amount int
+// }
+
+// func main(){
+// 	var contacts []contactInfo=loadJSON[contactInfo]("./contacts.json")
+// 	fmt.Printf("\n%+v", contacts)
+
+// 	var purchases []purchaseInfo=loadJSON[purchaseInfo]("./purchases.json")
+// 	fmt.Printf("\n%+v", purchases)
+
+// }
+
+// func loadJSON[T contactInfo | purchaseInfo](filePath string) []T{
+// 	data, _ := ioutil.ReadFile(filePath)
+
+// 	var loaded=[]T{}
+// 	json.Unmarshal(data, &loaded)
+// 	return loaded
+// }
+
 import (
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 )
 
-type contactInfo struct{
-	Name string
-	Email string
+type gasEngine struct{
+	gallons float32
+	mpg float32
 }
 
-type purchaseInfo struct{
-	Name string
-	Price float32
-	Amount int
+type electricEngine struct{
+	kwh float32
+	mpkph float32
+}
+
+type car [T gasEngine | electricEngine] struct{
+	carMake string
+	marModel string
+	engine T
 }
 
 func main(){
-	var contacts []contactInfo=loadJSON[contactInfo]("./contacts.json")
-	fmt.Printf("\n%+v", contacts)
-
-	var purchases []purchaseInfo=loadJSON[purchaseInfo]("./purchases.json")
-	fmt.Printf("\n%+v", purchases)
-
-}
-
-func loadJSON[T contactInfo | purchaseInfo](filePath string) []T{
-	data, _ := ioutil.ReadFile(filePath)
-
-	var loaded=[]T{}
-	json.Unmarshal(data, &loaded)
-	return loaded
+	var gasCar = car[gasEngine]{
+		carMake: "Toyota",
+		marModel: "Camry",
+		engine: gasEngine{
+			gallons: 10,
+			mpg: 30,
+		},
+	}
+	fmt.Printf("Gas Car: %+v\n", gasCar)
+	var electricCar = car[electricEngine]{
+		carMake: "Tesla",
+		marModel: "Model 3",
+		engine: electricEngine{
+			kwh: 100,
+			mpkph: 5,
+		},
+	}
 }
